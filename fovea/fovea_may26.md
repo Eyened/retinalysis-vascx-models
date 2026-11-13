@@ -4,7 +4,7 @@ library_version:
 ---
 
 ## Model description
-UNet ensemble (5 models) for fovea localisation from color fundus images (CFIs), trained on various public datasets, and on images from the Rotterdam Study. The model uses heatmap regression to produce (x,y) coordinates for the fovea location in the image, with x and y in the range [0,1], relative to image size.
+ConvnextV2 model for fovea localisation from color fundus images (CFIs), trained on various public datasets, and on images from the Rotterdam Study. The model uses heatmap regression to produce (x,y) coordinates for the fovea location in the image, with x and y in the range [0,1], relative to image size.
 
 ## Intended uses
 Localisation of the fovea on color fundus images.
@@ -13,7 +13,7 @@ Localisation of the fovea on color fundus images.
 The model was trained on [IDRID](https://ieee-dataport.org/open-access/indian-diabetic-retinopathy-image-dataset-idrid), [ADAM](https://ieeexplore.ieee.org/document/9768802), [PALM](https://www.nature.com/articles/s41597-024-02911-2), [REFUGE2](https://ieee-dataport.org/documents/refuge2-challenge-treasure-trove-multi-dimension-analysis-and-evaluation-glaucoma), and on images from the Rotterdam Study.
 
 ## Training procedure
-See [VascX Models: Deep Ensembles for Retinal Vascular Analysis From Color Fundus Images](https://tvst.arvojournals.org/article.aspx?articleid=2810436)
+See [VascX Models: Deep Ensembles for Retinal Vascular Analysis From Color Fundus Images](https://tvst.arvojournals.org/article.aspx?articleid=2810436). This model follows the same setup, except that it is no longer an ensemble, but a single convnextv2 model fine-tuned from ImageNet weights, which made it faster at no cost in performance.
 
 ## Evaluation
 See [VascX Models: Deep Ensembles for Retinal Vascular Analysis From Color Fundus Images](https://tvst.arvojournals.org/article.aspx?articleid=2810436)
@@ -40,7 +40,7 @@ We recommend to run inference using [retinalysis-inference](https://github.com/E
         HeatmapRegressionEnsemble,
         SegmentationEnsemble,
     )
-    ensemble = SegmentationEnsemble.from_huggingface("Eyened/vascx:disc/fovea_july24.pt").to(device)
+    ensemble = HeatmapRegressionEnsemble.from_huggingface("Eyened/vascx:fovea/fovea_may26.pt").to(device)
     ```
 
 3. Run inference:
@@ -55,7 +55,7 @@ We recommend to run inference using [retinalysis-inference](https://github.com/E
     # 3. Run the ensemble.
     predictions = ensemble.predict_batch(batch)
 
-    # 4. Postprocess the prediction into a final mask.
+    # 4. Postprocess the prediction into the final fovea coordinates.
     result = ensemble.postprocess_batch(predictions, batch)[0]
     ```
 

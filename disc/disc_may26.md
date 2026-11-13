@@ -5,7 +5,7 @@ library_version:
 
 ## Model description
 
-UNet ensemble (5 models) for optic disc segmentation from color fundus images (CFIs), trained on a variety of public datasets, and on images from the Rotterdam Study. 
+ConvnextV2 model for optic disc segmentation from color fundus images (CFIs), trained on a variety of public datasets, and on images from the Rotterdam Study. 
 
 ## Intended uses
 
@@ -13,11 +13,11 @@ Robust segmentation of the optic disc boundaries on color fundus images. Useful 
 
 ## Training data
 
-We used the publicly available [ORIGA](https://pubmed.ncbi.nlm.nih.gov/21095735/), [PAPILA](https://www.nature.com/articles/s41597-022-01388-1), [IDRID](https://ieee-dataport.org/open-access/indian-diabetic-retinopathy-image-dataset-idrid), [ADAM](https://ieeexplore.ieee.org/document/9768802), [PALM](https://www.nature.com/articles/s41597-024-02911-2), [REFUGE2](https://ieee-dataport.org/documents/refuge2-challenge-treasure-trove-multi-dimension-analysis-and-evaluation-glaucoma), together with internal Rotterdam Study images. Peripapillary atrophy (PPA) is in general not considered part of the disc and excluded from the segmentations. If this model helps you, please consider citing the authors of these datasets.
+We used the publicly available [ORIGA](https://pubmed.ncbi.nlm.nih.gov/21095735/), [PAPILA](https://www.nature.com/articles/s41597-022-01388-1), [IDRID](https://ieee-dataport.org/open-access/indian-diabetic-retinopathy-image-dataset-idrid), [ADAM](https://ieeexplore.ieee.org/document/9768802), [PALM](https://www.nature.com/articles/s41597-024-02911-2), [REFUGE2](https://ieee-dataport.org/documents/refuge2-challenge-treasure-trove-multi-dimension-analysis-and-evaluation-glaucoma), [G1020](https://arxiv.org/abs/2006.09158) together with internal Rotterdam Study images. Peripapillary atrophy (PPA) is in general not considered part of the disc and excluded from the segmentations. If this model helps you, please consider citing the authors of these datasets.
 
 ## Training procedure
 
-See [VascX Models: Deep Ensembles for Retinal Vascular Analysis From Color Fundus Images](https://tvst.arvojournals.org/article.aspx?articleid=2810436)
+See [VascX Models: Deep Ensembles for Retinal Vascular Analysis From Color Fundus Images](https://tvst.arvojournals.org/article.aspx?articleid=2810436). This model follows the same setup, except that it is no longer an ensemble, but a single convnextv2 model fine-tuned from ImageNet weights, which made it faster at no cost in performance.
 
 ## Evaluation
 
@@ -47,7 +47,7 @@ We recommend to run inference using [retinalysis-inference](https://github.com/E
         HeatmapRegressionEnsemble,
         SegmentationEnsemble,
     )
-    ensemble = SegmentationEnsemble.from_huggingface("Eyened/vascx:disc/disc_july24.pt").to(device)
+    ensemble = SegmentationEnsemble.from_huggingface("Eyened/vascx:disc/disc_may26.pt").to(device)
     ```
 
 3. Run inference:
@@ -70,12 +70,14 @@ For more information see [retinalysis-inference](https://github.com/Eyened/retin
 
 ## License & citation
 
-If you use this model, please consider citing:
+If you use this model, please consider citing, based on relevance:
 
 - [VascX Models: Deep Ensembles for Retinal Vascular Analysis From Color Fundus Images](https://tvst.arvojournals.org/article.aspx?articleid=2810436)
-Vargas Quiros, J. D., Liefers, B., van Garderen, K. A., Vermeulen, J. P., & Klaver, C. C. W. (2025). VascX Models: Deep Ensembles for Retinal Vascular Analysis From Color Fundus Images. Translational Vision Science & Technology, 14(7), 19-19.
+
+    Vargas Quiros, J. D., Liefers, B., van Garderen, K. A., Vermeulen, J. P., & Klaver, C. C. W. (2025). VascX Models: Deep Ensembles for Retinal Vascular Analysis From Color Fundus Images. Translational Vision Science & Technology, 14(7), 19-19.
 
 - [retinalysis-vascx: An explainable software toolbox for the extraction of retinal vascular biomarkers](https://arxiv.org/abs/2602.08580)
-Vargas Quiros, J. V., Beyeler, M. J., Vela, S. O., Center, E. R., Bergmann, S., Klaver, C. C. W., & Liefers, B. (2026). retinalysis-vascx: An explainable software toolbox for the extraction of retinal vascular biomarkers. arXiv preprint arXiv:2602.08580.
+
+    Vargas Quiros, J. V., Beyeler, M. J., Vela, S. O., Center, E. R., Bergmann, S., Klaver, C. C. W., & Liefers, B. (2026). retinalysis-vascx: An explainable software toolbox for the extraction of retinal vascular biomarkers. arXiv preprint arXiv:2602.08580.
 
 We share the model under a Creative Commons Attribution–NonCommercial 4.0 license. We note that some of the datasets used for training and evaluating the model ensemble were made publicly available for research purposes, but do not include a license.

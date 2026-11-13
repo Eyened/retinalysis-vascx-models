@@ -1,5 +1,5 @@
 ---
-license: agpl-3.0
+license: cc-by-nc-4.0
 pipeline_tag: image-segmentation
 tags:
 - medical
@@ -24,10 +24,24 @@ The model weights are in [huggingface](https://huggingface.co/Eyened/vascx).
 ## Model cards
 
 Please see the model card for each model for details about its training procedure, datasets and ciations. For example:
-- [Artery-vein](artery_vein/av_july24.md)
-- [Optic disc](disc/disc_july24.md)
-- [Fovea detection](fovea/fovea_july24.md)
-- [Quality estimation](quality/quality.md)
+
+- **Artery-vein** segmentation:
+    - [Original version (july24)](artery_vein/av_july24.md)
+    - [Updated version (may26)](artery_vein/av_may26.md)
+- **Optic disc** segmentation:
+    - [Original version (july24)](disc/disc_july24.md)
+    - [Updated version (may26)](disc/disc_may26.md)
+- **Fovea localisation**:
+    - [Original version (july24)](fovea/fovea_july24.md)
+    - [Updated version (may26)](fovea/fovea_may26.md)
+- **Quality estimation**:
+    - [Original version (july24)](quality/quality.md)
+- **Vessel** segmentation:
+    - [Original version (july24)](vessels/vessels_july24.md)
+    - [Updated version (may26)](vessels/vessels_may26.md)
+
+> [!IMPORTANT]
+> VascX models were trained using datasets kindly made available by the ophthalmic community. The model cards above indicate which (publicly-available) datasets were used for training. We encourage VascX users to consider citing the source datasets when they are relevant to their work.
 
 ## Licensing
 
