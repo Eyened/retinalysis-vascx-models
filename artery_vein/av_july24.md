@@ -82,4 +82,6 @@ If you use this model, please consider citing, based on relevance:
 
     Van Eijgen, Jan; Fhima, Jonathan; Behar, Joachim A.; Christinaki, Eirini; Stalmans, Ingeborg, 2023, "The Leuven-Haifa High-Resolution Fundus Image Dataset for Retinal Blood Vessel Segmentation and Glaucoma Diagnosis", https://doi.org/10.48804/Z7SHGO, KU Leuven RDR, V7
 
+Van Eijgen, J., Fhima, J., Billen Moulin-Romsée, MI. et al. Leuven-Haifa High-Resolution Fundus Image Dataset for Retinal Blood Vessel Segmentation and Glaucoma Diagnosis. Sci Data 11, 257 (2024). https://doi.org/10.1038/s41597-024-03086-6
+
 We share the model under a Creative Commons Attribution–NonCommercial 4.0 license. We note that some of the datasets used for training and evaluating the model ensemble were made publicly available for research purposes, but do not include a license. Other such as [Leuven-Haifa](https://www.nature.com/articles/s41597-024-03086-6) explicitly use custom terms with non-commercial clauses. 
